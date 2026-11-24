@@ -1,0 +1,92 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#101b2c">
+  <title>Nexo — Gestão de estoque e entregas</title>
+  <link rel="stylesheet" href="./styles.css">
+  <script src="./app.js" defer></script>
+</head>
+<body>
+  <div class="app-shell">
+    <aside class="sidebar" id="sidebar">
+      <a class="brand" href="#" aria-label="Nexo, início" data-route="dashboard">
+        <span class="brand-mark" aria-hidden="true"><i></i><i></i><i></i><i></i></span>
+        <span class="brand-copy"><strong>nexo</strong><small>OPERAÇÕES</small></span>
+      </a>
+
+      <div class="workspace-label">ESPAÇO DE TRABALHO</div>
+      <div class="workspace-switch">
+        <span class="workspace-avatar">A</span>
+        <span class="workspace-copy"><strong>Armazém Central</strong><small>Unidade Bom Jesus da Lapa</small></span>
+        <span class="switch-chevron" aria-hidden="true">⌄</span>
+      </div>
+
+      <nav class="primary-nav" aria-label="Navegação principal">
+        <div class="nav-caption" data-nav-group="overview">VISÃO GERAL</div>
+        <button class="nav-link active" data-route="dashboard"><span class="nav-icon">◫</span>Visão geral</button>
+        <div class="nav-caption nav-caption-spaced" data-nav-group="operations">OPERAÇÃO</div>
+        <button class="nav-link" data-route="stock"><span class="nav-icon">▦</span>Estoque <span class="nav-count" id="nav-low-stock">0</span></button>
+        <button class="nav-link" data-route="deliveries"><span class="nav-icon">⇢</span>Entregas <span class="nav-count subtle" id="nav-open-deliveries">0</span></button>
+        <button class="nav-link" data-route="replenishment"><span class="nav-icon">↗</span>Reposição <span class="nav-count" id="nav-purchase-requests" hidden>0</span></button>
+        <div class="nav-caption nav-caption-spaced" data-nav-group="intelligence">INTELIGÊNCIA</div>
+        <button class="nav-link" data-route="reports"><span class="nav-icon">▤</span>Relatórios</button>
+      </nav>
+
+      <div class="sidebar-bottom">
+        <div class="sidebar-help">
+          <span class="help-icon">?</span>
+          <div><strong>Precisa de ajuda?</strong><small>Consulte o guia rápido</small></div>
+          <span class="help-arrow">↗</span>
+        </div>
+        <div class="account-row">
+          <span class="account-avatar" id="sidebar-avatar">MC</span>
+          <span class="account-copy"><strong id="sidebar-name">Marina Costa</strong><small id="sidebar-role">Gerente de Operações</small></span>
+        </div>
+      </div>
+    </aside>
+
+    <main class="main-panel">
+      <header class="topbar">
+        <div class="topbar-left">
+          <button class="icon-button mobile-menu" id="mobile-menu" aria-label="Abrir menu">☰</button>
+          <div class="breadcrumb"><span>Operações</span><span class="crumb-separator">/</span><strong id="breadcrumb-current">Visão geral</strong></div>
+        </div>
+        <div class="topbar-actions">
+          <label class="global-search">
+            <span aria-hidden="true">⌕</span>
+            <input id="global-search" type="search" placeholder="Buscar produto ou entrega..." autocomplete="off" aria-label="Buscar produtos e entregas">
+            <kbd>Ctrl K</kbd>
+          </label>
+          <button class="icon-button notification-button" aria-label="Notificações" title="Alertas de estoque">♧<span class="notification-dot"></span></button>
+          <span class="topbar-divider"></span>
+          <div class="profile-picker">
+            <button class="profile-button" id="profile-button" aria-label="Trocar usuário de demonstração" aria-haspopup="listbox" aria-expanded="false" aria-controls="user-switcher">
+              <span class="account-avatar small" id="profile-avatar">MC</span><span class="profile-name" id="profile-name">Marina Costa</span><span class="switch-chevron">⌄</span>
+            </button>
+            <div class="user-switcher" id="user-switcher" role="listbox" aria-label="Trocar usuário de demonstração" hidden></div>
+          </div>
+        </div>
+      </header>
+
+      <div class="page-content" id="page-content" tabindex="-1"></div>
+      <footer class="app-footer">
+        <span>© 2026 Nexo Operações</span>
+        <span><i class="status-pulse"></i>Dados salvos neste navegador</span>
+      </footer>
+    </main>
+  </div>
+
+  <dialog class="app-dialog" id="app-dialog" aria-labelledby="dialog-title">
+    <div class="dialog-frame">
+      <div class="dialog-header">
+        <div><span class="eyebrow" id="dialog-eyebrow">OPERAÇÃO</span><h2 id="dialog-title"></h2></div>
+        <button class="icon-button dialog-close" type="button" aria-label="Fechar janela">×</button>
+      </div>
+      <div class="dialog-content" id="dialog-content"></div>
+    </div>
+  </dialog>
+  <div class="toast-region" id="toast-region" aria-live="polite" aria-atomic="true"></div>
+</body>
+</html>
